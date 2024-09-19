@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users here..</title>
+    <link rel="stylesheet" href="\style.css">
+</head>
+<body>
+    <marquee behavior="alternate">All data is fetch from mysql database and any changes will reflect to actual database</marquee>
+    <table border=1 cellpadding="5" cellspacing="0">
+        <th>Id</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    <% for(user of users){ %>
+        <tr>
+            
+            <td><%=user.id%></td>
+            <td><%=user.email%></td>
+            <td><%=user.username%></td>
+            <td>
+            <form action="/user/<%=user.id%>/edit" method="get">
+                <button class="edit-btn">Edit Username</button>
+            </form>
+           </td>
+           <td>
+            <form action="/user/<%=user.id%>/delete" method="get" >
+                <button class="del-btn">Delete</button>
+            </form>
+           </td>
+        </tr>
+
+    <%}%>
+    </table>
+    <div class="flex-div">
+        <form action="/user" method="post">
+            <button class="add-btn">Add new User</button>
+        </form>
+        <form action="/user?_method=delete" method="post">
+            <button class="delete-all-btn">Delete All</button>
+        </form>
+        <form action="/" method="get">
+            <button class="home-btn">Go to Home</button>
+        </form>
+    </div>
+    <div class="info">
+        when click on add new button then  faker libraray generate fake data and add to user table in selected database 
+
+    </div>
+     <script src="/app.js">
+       
+     </script>
+</body>
+</html>
